@@ -1,42 +1,74 @@
 let computerChoice = ["rock", "paper", "scissors"];
-
-function getComputerChoice() {
-    let random = Math.floor(Math.random() * computerChoice.length);
-    let choice = computerChoice[random];
-    return choice;
-}
+let points = 0;
 
 
-function playRound(playerSelection, computerSelection) {
 
-    if (playerSelection === computerSelection) {
+
+function playRound() {
+
+    let playsel = prompt("Rock, Paper, Scissors!", "Write your choice");
+
+    function computerSelection() {
+        let random = Math.floor(Math.random() * computerChoice.length);
+        let choice = computerChoice[random];
+        return choice;
+    }
+
+    if (playsel.toLowerCase() === computerSelection()) {
         console.log("tie")
+        points = points + 0
 
-    } else if (playerSelection === "rock" && computerSelection === "scissors") {
+    } else if (playsel.toLowerCase() === "rock" && computerSelection() === "scissors") {
         console.log("you win rock vs sci")
-    } else if (playerSelection === "rock" && computerSelection === "paper") {
+        points = points + 1
+
+    } else if (playsel.toLowerCase() === "rock" && computerSelection() === "paper") {
         console.log("you lose rock vs pap")
-    } else if (playerSelection === "scissors" && computerSelection === "rock") {
+        points = points - 1
+
+    } else if (playsel.toLowerCase() === "scissors" && computerSelection() === "rock") {
         console.log("you lose sci vs rock")
-    } else if (playerSelection === "scissors" && computerSelection === "paper") {
+        points = points - 1
+
+    } else if (playsel.toLowerCase() === "scissors" && computerSelection() === "paper") {
         console.log("you win sci vs pap")
-    } else if (playerSelection === "paper" && computerSelection === "rock") {
+        points = points + 1
+
+    } else if (playsel.toLowerCase() === "paper" && computerSelection() === "rock") {
         console.log("you win pap vs rock")
-    } else if (playerSelection === "paper" && computerSelection === "scissors") {
+        points = points + 1
+
+    } else if (playsel.toLowerCase() === "paper" && computerSelection() === "scissors") {
         console.log("you lose pap vs sci")
+        points = points - 1
+
     }
     else {
         console.log("wtf")
     }
 
-    return playerSelection && computerSelection;
+    return points;
+}
+
+let game = () => {
+
+    playRound();
+
+    playRound();
+
+    playRound();
+
+    playRound();
+
+    return;
 }
 
 
 
-const playerSelection = "scissors";
-const computerSelection = getComputerChoice();
 
-console.log(playRound(playerSelection, computerSelection));
+
+
+console.log(game(playRound()));
+console.log(points);
 
 
