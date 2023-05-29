@@ -1,12 +1,31 @@
 let computerChoice = ["rock", "paper", "scissors"];
 let points = 0;
+const rock = document.querySelector('#btn-rock');
+const paper = document.querySelector('#btn-paper');
+const scissors = document.querySelector('#btn-sci');
+const result = document.querySelector('#container')
+
+const pointCounter = document.createElement('div')
+pointCounter.classList.add('pointCounter')
+pointCounter.textContent = 'Points are:';
+
+result.appendChild(pointCounter);
 
 
 
+rock.addEventListener('click', () => {
+    playRound("rock");
+});
+paper.addEventListener('click', () => {
+    playRound("paper");
+});
+scissors.addEventListener('click', () => {
+    playRound("scissors");
+});
 
-function playRound() {
 
-    let playsel = prompt("Rock, Paper, Scissors!", "Write your choice");
+
+function playRound(playsel) {
 
     function computerSelection() {
         let random = Math.floor(Math.random() * computerChoice.length);
@@ -16,33 +35,40 @@ function playRound() {
 
     let compuSel = computerSelection();
 
-    if (playsel.toLowerCase() === compuSel) {
+    if (playsel === compuSel) {
         console.log("tie")
+        result.textContent = 'Tie!'
         points = points + 0
 
-    } else if (playsel.toLowerCase() === "rock" && compuSel === "scissors") {
+    } else if (playsel === "rock" && compuSel === "scissors") {
         console.log("you win rock vs sci")
-        points = points + 1
+        result.textContent = 'You Win!'
+        pointCounter.textContent = "Points are:", points + 1;
 
-    } else if (playsel.toLowerCase() === "rock" && compuSel === "paper") {
+    } else if (playsel === "rock" && compuSel === "paper") {
         console.log("you lose rock vs pap")
-        points = points - 1
+        result.textContent = 'You Lose!'
+        pointCounter.textContent = "Points are:", points - 1;
 
-    } else if (playsel.toLowerCase() === "scissors" && compuSel === "rock") {
+    } else if (playsel === "scissors" && compuSel === "rock") {
         console.log("you lose sci vs rock")
-        points = points - 1
+        result.textContent = 'You Lose!'
+        pointCounter.textContent = "Points are:", points - 1;
 
-    } else if (playsel.toLowerCase() === "scissors" && compuSel === "paper") {
+    } else if (playsel === "scissors" && compuSel === "paper") {
         console.log("you win sci vs pap")
-        points = points + 1
+        result.textContent = 'You Win!'
+        pointCounter.textContent = "Points are:", points + 1;
 
-    } else if (playsel.toLowerCase() === "paper" && compuSel === "rock") {
+    } else if (playsel === "paper" && compuSel === "rock") {
         console.log("you win pap vs rock")
-        points = points + 1
+        result.textContent = 'You Win!'
+        pointCounter.textContent = "Points are:", points + 1;
 
-    } else if (playsel.toLowerCase() === "paper" && compuSel === "scissors") {
+    } else if (playsel === "paper" && compuSel === "scissors") {
         console.log("you lose pap vs sci")
-        points = points - 1
+        result.textContent = 'You Lose!'
+        pointCounter.textContent = "Points are:", points - 1;
 
     }
     else {
@@ -52,33 +78,5 @@ function playRound() {
     return points;
 }
 
-let game = () => {
-
-    playRound();
-
-    playRound();
-
-    playRound();
-
-    playRound();
-
-    return;
-}
-
-function winner() {
-
-    if (points => 0) {
-        console.log("yo win")
-    } else {
-        console.log("you lose")
-    }
-    return;
-}
-
-
-
-
-console.log(game(playRound()));
-console.log(winner());
 
 
